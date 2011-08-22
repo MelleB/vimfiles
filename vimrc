@@ -8,6 +8,10 @@ call pathogen#helptags()
 " Set the colorscheme + background
 syntax enable
 set background=dark
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
+let g:solarized_contrast="high"
+let g:solarized_visibility="high"
 colorscheme solarized
 
 " Set the tabstop to 4 spaces
@@ -40,6 +44,17 @@ set showmode " Show current mode
 set cursorline " Highlight the current line
 set wildmenu
 set wildmode=list:longest,full
+set number
+set modelines=0
+
+" Not available before 7.3 :(
+if version >= 730
+  " Relative line numbers
+  set relativenumber
+  " Color column 81 to indicate longer lines
+  set colorcolumn=81
+endif
+
 
 " Turn on omni-completion
 filetype plugin on
@@ -51,6 +66,8 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 autocmd FileType c set omnifunc=ccomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+
 
 " build tags of your own project with Ctrl-F12
 map <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -89,7 +106,7 @@ scriptencoding utf-8
 set history=1000
 
 "set list
-"set listchars=tab:>.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
+"set listchars=tab:▸.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
 
 set autochdir
 set shortmess=aOItT " Avoid 'Hit enter to continue' msg
@@ -141,4 +158,7 @@ autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,
 
 nore ; :
 nore , ;
+
+" Ack plugin
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
