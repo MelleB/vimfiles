@@ -10,9 +10,13 @@ syntax enable
 set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
-let g:solarized_contrast="high"
+let g:solarized_contrast="middle"
 let g:solarized_visibility="high"
 colorscheme solarized
+
+" Map the leader key to ,
+let mapleader = ","
+let g:mapleader = ","
 
 " Set the tabstop to 4 spaces
 set tabstop=4
@@ -44,7 +48,6 @@ set showmode " Show current mode
 set cursorline " Highlight the current line
 set wildmenu
 set wildmode=list:longest,full
-set number
 set modelines=0
 
 " Not available before 7.3 :(
@@ -106,7 +109,7 @@ scriptencoding utf-8
 set history=1000
 
 "set list
-"set listchars=tab:▸.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:▸.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
 
 set autochdir
 set shortmess=aOItT " Avoid 'Hit enter to continue' msg
@@ -120,6 +123,8 @@ imap <C-l> <right>
 " Fix backspace
 set backspace=start,indent,eol
 
+" NERDTree
+nnoremap<F3> :NERDTreeToggle<CR>
 map <silent> <Leader>nt :NERDTreeToggle<CR>
 
 " let g:miniBufExplMapWindowNavVim = 1
@@ -132,7 +137,6 @@ map <silent> <Leader>nt :NERDTreeToggle<CR>
 " Insert a datetime string
 nnoremap<F6>  "=strftime("%F %R (%A)")<CR>P
 inoremap<F6>  <C-R>=strftime("%F %R (%A)")<CR> 
-nnoremap<F3> :NERDTreeToggle<CR>
 
 " Paste while preserving formatting
 imap <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
@@ -148,17 +152,24 @@ function! MyLastWindow()
   endif
 endfunction
 
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
 " Replacements for copy an paste
 map <Leader>y "+Y
 vmap <Leader>y "+y
 map <Leader>p "+p
 map <Leader>P "+P
 
-autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-nore ; :
-nore , ;
-
 " Ack plugin
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+" Comment/markdown functions
+map <Leader>1 yypVr=
+map <Leader>2 yypVr-
+
+" Remove highlight (Shift + /)
+map ? :noh<CR>
+
+" Do not update the screen when executing macros
+set lazyredraw
 

@@ -31,3 +31,6 @@
 [submodule "bundle/snipmate"]
 	path = bundle/snipmate
 	url = https://github.com/msanders/snipmate.vim.git
+[submodule "bundle/indent-guides"]
+	path = bundle/indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
