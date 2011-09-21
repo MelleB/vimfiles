@@ -11,7 +11,7 @@ set background=dark
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="middle"
-let g:solarized_visibility="high"
+let g:solarized_visibility="low"
 colorscheme solarized
 
 " Map the leader key to ,
@@ -33,7 +33,7 @@ set go-=l
 set go-=L
 set go-=r
 set go-=R
- 
+
 " Setting indent
 set smartindent
 set cindent
@@ -108,8 +108,8 @@ map <right> <nop>
 scriptencoding utf-8
 set history=1000
 
-"set list
-set listchars=tab:▸.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
+set list " Highlight problematic whitespace
+set listchars=tab:▸.,trail:.,extends:#,nbsp:.,eol:¬
 
 set autochdir
 set shortmess=aOItT " Avoid 'Hit enter to continue' msg
@@ -136,7 +136,7 @@ map <silent> <Leader>nt :NERDTreeToggle<CR>
 
 " Insert a datetime string
 nnoremap<F6>  "=strftime("%F %R (%A)")<CR>P
-inoremap<F6>  <C-R>=strftime("%F %R (%A)")<CR> 
+inoremap<F6>  <C-R>=strftime("%F %R (%A)")<CR>
 
 " Paste while preserving formatting
 imap <Leader>v  <C-O>:set paste<CR><C-r>*<C-O>:set nopaste<CR>
@@ -172,4 +172,8 @@ map ? :noh<CR>
 
 " Do not update the screen when executing macros
 set lazyredraw
+
+" Remove trailing whitespace
+" From: http://vim.wikia.com/wiki/Remove_unwanted_spaces
+nnoremap <silent> <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
