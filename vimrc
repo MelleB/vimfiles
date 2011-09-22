@@ -177,3 +177,5 @@ set lazyredraw
 " From: http://vim.wikia.com/wiki/Remove_unwanted_spaces
 nnoremap <silent> <F7> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
+" Map Ctrl+RETURN to starting at the 0 column
+imap <C-CR> <CR>v0s
