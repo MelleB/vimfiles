@@ -7,11 +7,16 @@ call pathogen#helptags()
 
 " Set the colorscheme + background
 syntax enable
-set background=dark
 let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-let g:solarized_contrast="middle"
-let g:solarized_visibility="low"
+let g:solarized_termcolors=16
+if has("gui_running")
+	let g:solarized_contrast="middle"
+	let g:solarized_visibility="low"
+else
+	let g:solarized_contrast="high"
+	let g:solarized_visibility="low"
+endif
+set background=dark
 colorscheme solarized
 
 " Map the leader key to ,
@@ -51,7 +56,7 @@ set wildmode=list:longest,full
 set modelines=0
 
 " Not available before 7.3 :(
-if version >= 730
+if version >= 703
   " Relative line numbers
   set relativenumber
   " Color column 81 to indicate longer lines
